@@ -1,0 +1,75 @@
+---
+title: "Tarea Analisis de datos"
+author: "Alex Soto"
+date: "7/3/2021"
+output:
+  html_document:
+    toc: yes
+    Toc_depth: 3
+  long: es-Es
+---
+![Pantaleon.](Captura/Pantaleon.png)
+
+# Tarea de analisis de datos.
+El objetico de la tarea es realizar un documento en markdown y conocer su productividad.
+
+## Evaluacion de cleaner.
+En la cosecha de caña se utilizan las cleaners son equipos de disminucion de trans en los toletes cortadas. 
+
+[Articulo](https://hemeroteca.unad.edu.co/index.php/publicaciones-e-investigacion/article/view/570)
+
+![Cleaner.](Captura/Cleaner.png)
+
+# Resumen datos Cleaner.
+
+
+
+```{r echo=FALSE}
+setwd("c:/users/easoto/OneDrive - Pantaleon. S.A/Documentos/GitHub/Data-Alex")
+library(readxl)
+Ensayo_Cleaner <- read_excel("Ensayo Cleaner.xlsx", 
+sheet = "TCH BASCULA", range = "A1:N17")
+View(Ensayo_Cleaner)
+summary(Ensayo_Cleaner$TCH)
+
+```
+# Matriz de Datos a evaluar.
+
+```{r echo=FALSE}
+library(psych)
+describeBy(Ensayo_Cleaner$TCH, group = Ensayo_Cleaner$DESCRIPCION, mat = TRUE, digits = 2)
+```
+
+# HISTOGRAMA.
+
+```{r echo=FALSE}
+hist(Ensayo_Cleaner$TCH, main = "Histograma", col = "blue", ylab = "Frecuencia")
+
+```
+
+
+# bOXplot.
+
+```{r}
+boxplot(Ensayo_Cleaner$TCH ~ Ensayo_Cleaner$DESCRIPCION, main="TCH CLEANER", col="orange")
+```
+
+
+# ANOVA.
+```{r}
+anova <- aov(Ensayo_Cleaner$TCH ~ Ensayo_Cleaner$DESCRIPCION)
+summary(anova)
+```
+
+
+# Regresion Lineal.
+
+```{r}
+plot(Ensayo_Cleaner$TCH~Ensayo_Cleaner$ML)
+cor.test(Ensayo_Cleaner$TCH,Ensayo_Cleaner$ML)
+```
+
+# Conclusion.
+Estamos aprendiendo.
+
+
