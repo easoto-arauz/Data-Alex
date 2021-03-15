@@ -73,3 +73,19 @@ cor.test(Ensayo_Cleaner$TCH,Ensayo_Cleaner$ML)
 Estamos aprendiendo.
 
 
+```{r}
+library(ggplot2)
+names(Ensayo_Cleaner)
+class(Ensayo_Cleaner)
+Ensayo_Cleaner
+modelo1 = lm(ML ~ TCH, data = Ensayo_Cleaner, na.action = na.exclude)
+summary(modelo1)
+
+ML= 418.62 + 0.08421
+grafica1 = ggplot(Ensayo_Cleaner, aes(ML , TCH))
+grafica1 + geom_point()
+grafica1 + geom_point() + geom_smooth(method = "lm", colour= "Red") 
+```
+
+
+
